@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on READ MY STUFF</title>
+    <link>https://jysandy.github.io/posts/</link>
+    <description>Recent content in Posts on READ MY STUFF</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 02 Oct 2021 11:04:35 +0530</lastBuildDate><atom:link href="https://jysandy.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Initial Post</title>
+      <link>https://jysandy.github.io/posts/initial-post/</link>
+      <pubDate>Sat, 02 Oct 2021 11:04:35 +0530</pubDate>
+      
+      <guid>https://jysandy.github.io/posts/initial-post/</guid>
+      <description>For a long time, I never felt like I had anything to blog about. I never thought I had anything interesting or useful to put out there. I work as a programmer, but I&amp;rsquo;ve never really been interested in writing that type of content. I think I don&amp;rsquo;t want to produce tutorials or help articles because I don&amp;rsquo;t really consume that kind of content myself. They go out of date, are sometimes poorly written or even factually inaccurate, and I just don&amp;rsquo;t find them worth the hassle when I could read official documentation or a well-edited book instead.</description>
+    </item>
+    
+  </channel>
+</rss>
