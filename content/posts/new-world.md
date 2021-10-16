@@ -1,7 +1,7 @@
 ---
-title: "New World"
+title: "MMOs in 2021?"
 date: 2021-10-10T11:20:28+05:30
-draft: true
+draft: false
 ---
 
 I think the last time I'd played an MMO was somewhere around 2008. Before that, however, MMOs were a huge part of my gaming 
@@ -35,7 +35,7 @@ New World open beta on September 9th though, I didn't think I'd pick up and enjo
 
 There were things that I immediately took a liking to, such as the more mechanical and action-oriented combat. In recent 
 years, I've found myself wanting games to be mechanically interesting and demanding (which is part of the reason I don't 
-play MOBAs anymore), so I was pleased to see this. Everything else, however, seemed to fall short of my previous MMO 
+play MOBAs anymore), so I was happy to see this. Everything else, however, seemed to fall short of my previous MMO 
 experiences. The quests were lazy fetch quests that didn't even make me want to pay attention to the worldbuilding. I don't 
 think I've read or listened to a single dialogue in this game without skipping it. The world design and variety of Runescape 
 and MS was lacking here, too. The world just seemed to be plains and forests with a handful of towns in between. The 
@@ -44,5 +44,20 @@ a bustling city filled with life and things to do, or with Maplestory's Victoria
 a desert and an urban area (and that's not even half of the entire world map). To this day, I still listen to the soundtracks 
 of Runescape and Maplestory when I work, but the New World soundtrack was so forgettable, I don't even think I could describe it. 
 Eventually I just turned it off and played my own music. The game wasn't even good on the technical front. It was full of bugs, 
-would drop below 40 FPS at times and didn't even have SEA servers on launch.  
+would drop below 40 FPS at times and didn't have SEA servers on launch. Suffice it to say that I got burnt out of the game 
+pretty quickly. I did buy the game sometime after launch, but I played it for a weekend or two and haven't touched it since.  
+
+And yet, the game's still attracting [over 500k concurrent players](https://steamcharts.com/app/1063730) concurrent players 
+at peak. Why are people still interested in this?
+
+One explanation is that this is the first MMO that many younger gamers have played. MMOs haven't been popular in the public 
+eye for several years now, so to these newer players, New World must seem completely novel. I myself know a number of people who've 
+never played an MMO before. Aside from this, however — I'm out of ideas. At some point, I'll write about my lack of understanding 
+of the typical gamer's wants, because they're a complete mystery to me. As for myself, I think it's likely that my own tastes 
+in gaming have changed quite a bit over time. I can't help but see banal and repetitive gameplay for what it is now, and this 
+is probably why I primarily play PvP-focused games. Even in New World, the most fun I had with the game were the PvP elements;
+but those are gated behind a wall of drudgery and fetch quests as well. I played some [WoW](https://twitter.com/Warcraft) recently 
+after a friend suggested it. I only played for about an hour, and I plan on trying the game out for longer, but so far, the 
+tutorial has just been more fetch quests and a lot of coddling and handholding, with admittedly some novelty in the world 
+design. I'll see if it holds my interest for long,er but if not, maybe I just can't enjoy MMOs anymore.
 
