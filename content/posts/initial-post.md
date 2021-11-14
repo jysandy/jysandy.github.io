@@ -1,7 +1,7 @@
 ---
 title: "Initial Post"
 date: 2021-10-02T11:04:35+05:30
-draft: true
+draft: false
 ---
 
 For a long time, I never felt like I had anything to blog about. I never thought I had anything interesting or useful 
