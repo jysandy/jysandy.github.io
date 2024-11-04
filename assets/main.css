@@ -1,0 +1,11 @@
+.red-text
+{
+    color: red;
+}
+
+.column
+{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}

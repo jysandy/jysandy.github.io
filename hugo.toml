@@ -1,0 +1,62 @@
+baseURL = 'https://jysandy.github.io/'
+languageCode = 'en-us'
+title = 'Sandilya Jandhyala'
+theme = 'typo'
+
+[taxonomies]
+tag = 'tags'
+
+[params]
+# Meta description
+description = "A Tech Blog"
+
+# Appearance settings
+theme = 'auto'
+colorPalette = 'default'
+hideHeader = false
+
+# Intro on main page, content is markdown
+homeIntroTitle = 'Hi!'
+homeIntroContent = """
+I'm Sandy, a senior backend engineer, functional programmer and graphics programming enthusiast. 
+As part of my professional work, 
+I've built complex backend services, distributed systems, and some web frontends in a variety of 
+languages for clients of all shapes and sizes. 
+I'm interested in game engine development, real-time rendering and functional programming.
+"""
+
+# Collection to display on home
+homeCollectionTitle = 'Posts'
+homeCollection = 'posts'
+
+# Lists parameters
+paginationSize = 100
+listSummaries = true
+listDateFormat = '2 Jan 2006'
+
+# Breadcrumbs
+breadcrumbs = true
+
+# Social icons
+[[params.social]]
+name = "linkedin"
+url = "https://www.linkedin.com/in/jysandy/"
+
+
+[[params.social]]
+name = "github"
+url = "https://github.com/jysandy"
+
+# Main menu pages
+# [[params.menu]]
+# name = "home"
+# url = "/"
+
+# [[params.menu]]
+# name = "about"
+# url = "/about"
+
+# Syntax highligth on code blocks
+[markup]
+[markup.highlight]
+style = 'algol'
