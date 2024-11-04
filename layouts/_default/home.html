@@ -42,11 +42,27 @@
 <div class="column">
     <div class="flex flex-column">
         <h3>Gradient</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Picture goes here
-            </p>
-            <p class="w-two-thirds-ns">
+        <div class="flex flex-column">
+            <div class="flex flex-column flex-row-ns">
+                <div class="w-50-ns flex flex-column">
+                    {{ with resources.Get "images/gradient1.png" }}
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                    {{ end }}
+                    {{ with resources.Get "images/gradient4.png" }}
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                    {{ end }}
+                </div>
+                <div class="w-50-ns flex flex-column">
+                    {{ with resources.Get "images/gradient2.png" }}
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                    {{ end }}
+
+                    {{ with resources.Get "images/gradient3.png" }}
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                    {{ end }}
+                </div>
+            </div>
+            <p class="">
                 Gradient is a work-in-progress game engine that currently has some rendering and physics features.
                 Rendering features currently include PBR direct lighting and materials, HDR rendering with Narkowicz
                 ACES tonemapping, shadow mapping with PCF, normal mapping, bloom and environment mapping.
