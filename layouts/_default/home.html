@@ -209,13 +209,15 @@
 <h1>Odds and ends</h1>
 <div class="flex flex-column">
     <div class="flex flex-column">
-        <h3>IN/Clojure</h3>
-
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Logo goes here
-            </p>
-            <p class="w-two-thirds-ns">
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-third-ns pr3-ns">
+                <div class="pa3 br3" style="background: white; ">
+                    {{ with resources.Get "images/inclojure-logo.png" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
+            <p class="w-two-thirds-ns tj tl-ns">
                 <a href="https://inclojure.org">IN/Clojure</a> is India's annual Clojure and ClojureScript
                 conference.
                 I've helped organise it in
@@ -230,13 +232,15 @@
     </div>
 
     <div class="flex flex-column">
-        <h3>Clojure Basics Screencasts</h3>
-
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Youtube thumbnail/playlist embed here
-            </p>
-            <p class="w-two-thirds-ns">
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-third-ns">
+                <iframe width="210"
+                    src="https://www.youtube.com/embed/videoseries?si=vAqthPo20kt4l_3t&amp;controls=0&amp;list=PL2Q86tDyogSXCZnAwtxGa5cCmxEKosFZ-"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p class="w-two-thirds-ns tj tl-ns">
                 I recorded some <a
                     href="https://www.youtube.com/playlist?list=PL2Q86tDyogSXCZnAwtxGa5cCmxEKosFZ-">screencasts</a>
                 on the nilenso YouTube channel addressing some fundamental Clojure topics that I felt weren't
