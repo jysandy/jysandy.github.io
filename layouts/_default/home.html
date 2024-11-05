@@ -45,32 +45,37 @@
             <h3>Gradient</h3>
         </a>
         <div class="flex flex-column">
-            <div class="flex flex-column flex-row-ns">
-                <div class="w-50-ns flex flex-column">
-                    {{ with resources.Get "images/gradient1.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
-                    </a>
-                    {{ end }}
-                    {{ with resources.Get "images/gradient4.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
-                    </a>
-                    {{ end }}
-                </div>
-                <div class="w-50-ns flex flex-column">
-                    {{ with resources.Get "images/gradient2.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
-                    </a>
-                    {{ end }}
+            <div class="flex flex-column">
+                {{ with resources.Get "images/gradient4.png" }}
+                <a href="{{ .RelPermalink }}">
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                </a>
+                {{ end }}
 
-                    {{ with resources.Get "images/gradient3.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
-                    </a>
-                    {{ end }}
+                <div class="flex flex-column flex-row-ns">
+                    <div class="w-70-ns">
+                        {{ with resources.Get "images/gradient2.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1">
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="w-30-ns flex flex-column">
+                        {{ with resources.Get "images/gradient1.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1">
+                        </a>
+                        {{ end }}
+
+                        {{ with resources.Get "images/gradient3.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1">
+                        </a>
+                        {{ end }}
+                    </div>
+
                 </div>
+
             </div>
             <p>
                 Gradient is a work-in-progress game engine that currently has some rendering and physics features.
@@ -85,15 +90,14 @@
             <h3>sandtrace</h3>
         </a>
         <div class="flex flex-column">
-            <div class="flex flex-column flex-row-ns">
-                <div class="w-50-ns flex flex-column">
-                    {{ with resources.Get "images/sandtrace1.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
-                    </a>
-                    {{ end }}
-                </div>
-                <div class="w-25-ns flex flex-column">
+            <div class="flex flex-column">
+                {{ with resources.Get "images/sandtrace1.png" }}
+                <a href="{{ .RelPermalink }}">
+                    <img src="{{ .RelPermalink }}" class="pa1">
+                </a>
+                {{ end }}
+
+                <div class="flex flex-column flex-row-ns">
                     {{ with resources.Get "images/sandtrace2.png" }}
                     <a href="{{ .RelPermalink }}">
                         <img src="{{ .RelPermalink }}" class="pa1">
