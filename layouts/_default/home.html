@@ -9,6 +9,12 @@
 {{ $style := resources.Get "main.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $style.Permalink }}">
 
+{{ with resources.Get "images/sandy.jpeg" }}
+<div class="flex flex-column items-center items-start-ns">
+    <img src="{{ .RelPermalink }}" class="" style="max-height: 300px;">
+</div>
+{{ end }}
+
 {{ if or .Site.Params.homeIntroTitle .Site.Params.homeIntroContent }}
 <div class="intro">
     {{ with .Site.Params.homeIntroTitle }}
