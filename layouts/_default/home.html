@@ -125,11 +125,14 @@
 <h1> Experiences I've had</h1>
 <div class="column">
     <div class="flex flex-column">
-        <h3>nilenso</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Logo goes here
-            </p>
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-100 w-third-ns pr3-ns">
+                <div class="pa3 br3 flex flex-column items-center" style="background: white;">
+                    {{ with resources.Get "images/nilenso-logo.svg" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
             <p class="w-two-thirds-ns">
                 nilenso is an employee-owned software cooperative. I worked with clients (listed below) to build
                 complex and scalable backend services, and to coach and train their developers as necessary. I also
@@ -139,11 +142,14 @@
     </div>
 
     <div class="flex flex-column">
-        <h3>Consolidate Health</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Logo goes here
-            </p>
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-third-ns pr3-ns">
+                <div class="pa3 br3" style="background: white; ">
+                    {{ with resources.Get "images/ch-logo.webp" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
             <p class="w-two-thirds-ns">
                 Consolidate Health is a healthcare data app for American patients. As one of their first engineers,
                 I designed their patient data platform and built the product from the ground up.
@@ -152,11 +158,14 @@
     </div>
 
     <div class="flex flex-column">
-        <h3>Gojek</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Logo goes here
-            </p>
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-third-ns pr3-ns">
+                <div class="pa3 br3" style="background: white; ">
+                    {{ with resources.Get "images/gojek-logo.png" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
             <p class="w-two-thirds-ns">
                 Gojek is an on-demand decacorn in Southeast Asia. I worked on
                 multiple products, including their ride-hailing platform, a voucher bundling system, an A/B
@@ -166,26 +175,17 @@
     </div>
 
     <div class="flex flex-column">
-        <h3>Rupeek</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="w-third-ns">
-                Logo goes here
-            </p>
+        <div class="flex flex-column flex-row-ns items-center">
+            <div class="w-third-ns pr3-ns">
+                <div class="pa3 br3" style="background: white; ">
+                    {{ with resources.Get "images/staples-logo.png" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
             <p class="w-two-thirds-ns">
-                Rupeek is an online gold finance platform in India. I worked on both their web frontend and
-                their backend loan-processing automation.
-            </p>
-        </div>
-    </div>
-
-    <div class="flex flex-column">
-        <h3>Staples SparX</h3>
-        <div class="flex flex-column flex-row-ns">
-            <p class="fl w-third-ns">
-                Logo goes here
-            </p>
-            <p class="fl w-two-thirds-ns">
-                Staples Sparx was an arm of Staples that used machine learning to suggest content on Staples’ e-commerce
+                Staples Sparx was an arm of Staples that used machine learning to suggest content on Staples’
+                e-commerce
                 website. I built a web-based frontend for their internal A/B testing system.
             </p>
         </div>
@@ -197,7 +197,8 @@
 
 <h1>Tech I've used</h1>
 <div>
-    <p>List of logos here. C++, C#, DirectX, Clojure, Ruby, Go, Javascript, Haskell, Postgres, Redis, Google Cloud, AWS,
+    <p>List of logos here. C++, C#, DirectX, Clojure, Ruby, Go, Javascript, Haskell, Postgres, Redis, Google Cloud,
+        AWS,
         Kubernetes</p>
 </div>
 
@@ -214,11 +215,13 @@
                 Logo goes here
             </p>
             <p class="w-two-thirds-ns">
-                <a href="https://inclojure.org">IN/Clojure</a> is India's annual Clojure and ClojureScript conference.
+                <a href="https://inclojure.org">IN/Clojure</a> is India's annual Clojure and ClojureScript
+                conference.
                 I've helped organise it in
                 <a href="https://inclojure.org/archive/2018/">2018</a>,
                 <a href="https://inclojure.org/archive/2019/">2019</a> and
-                <a href="https://inclojure.org/archive/2020/">2020</a>. I ran the beginner's Clojure workshop every year
+                <a href="https://inclojure.org/archive/2020/">2020</a>. I ran the beginner's Clojure workshop every
+                year
                 and helped develop
                 the curriculum for it.
             </p>
@@ -235,7 +238,8 @@
             <p class="w-two-thirds-ns">
                 I recorded some <a
                     href="https://www.youtube.com/playlist?list=PL2Q86tDyogSXCZnAwtxGa5cCmxEKosFZ-">screencasts</a>
-                on the nilenso YouTube channel addressing some fundamental Clojure topics that I felt weren't covered
+                on the nilenso YouTube channel addressing some fundamental Clojure topics that I felt weren't
+                covered
                 well
                 in existing Clojure material.
             </p>
