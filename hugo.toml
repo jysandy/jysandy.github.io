@@ -18,7 +18,7 @@ hideHeader = false
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hi!'
 homeIntroContent = """
-I'm Sandy, a senior backend engineer, functional programmer and graphics programming enthusiast. 
+I'm Sandy, a senior backend engineer turned graphics programmer. 
 As part of my professional work, 
 I've built complex backend services, distributed systems, and some web frontends in a variety of 
 languages for clients of all shapes and sizes. 
