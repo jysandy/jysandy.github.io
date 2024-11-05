@@ -16,7 +16,7 @@
     {{ end }}
 
     {{ with .Site.Params.homeIntroContent }}
-    <p>{{ . | markdownify }}</p>
+    <p class="tj tl-ns">{{ . | markdownify }}</p>
     {{ end }}
 </div>
 {{ end }}
@@ -77,9 +77,10 @@
                 </div>
 
             </div>
-            <p>
-                Gradient is a work-in-progress game engine that currently has some rendering and physics features.
-                Rendering features currently include PBR direct lighting and materials, HDR rendering with Narkowicz
+            <p class="tj tl-ns">
+                Gradient is a work-in-progress game engine.
+                It currently includes physics simulation with Jolt, PBR direct lighting and materials, HDR rendering
+                with Narkowicz
                 ACES tonemapping, shadow mapping with PCF, normal mapping, bloom and environment mapping.
             </p>
         </div>
@@ -93,7 +94,7 @@
             <div class="flex flex-column">
                 {{ with resources.Get "images/sandtrace1.png" }}
                 <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <img src="{{ .RelPermalink }}" class="pa1 w-100" style="max-height: 400px; object-fit: contain;">
                 </a>
                 {{ end }}
 
@@ -111,7 +112,7 @@
                     {{ end }}
                 </div>
             </div>
-            <p>
+            <p class="tj tl-ns">
                 sandtrace is a non-real-time recursive ray-tracer written in C++. It runs completely on the CPU, with no
                 GPU acceleration.
             </p>
@@ -124,7 +125,7 @@
 
 <h1> Experiences I've had</h1>
 <div class="column">
-    <div class="flex flex-column">
+    <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-center">
             <div class="w-100 w-third-ns pr3-ns">
                 <div class="pa3 br3 flex flex-column items-center" style="background: white;">
@@ -133,7 +134,7 @@
                     {{ end }}
                 </div>
             </div>
-            <p class="w-two-thirds-ns">
+            <p class="w-two-thirds-ns tj tl-ns">
                 nilenso is an employee-owned software cooperative. I worked with clients (listed below) to build
                 complex and scalable backend services, and to coach and train their developers as necessary. I also
                 helped define hiring strategy at nilenso and have mentored and trained junior engineers.
@@ -141,7 +142,7 @@
         </div>
     </div>
 
-    <div class="flex flex-column">
+    <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-center">
             <div class="w-third-ns pr3-ns">
                 <div class="pa3 br3" style="background: white; ">
@@ -150,14 +151,14 @@
                     {{ end }}
                 </div>
             </div>
-            <p class="w-two-thirds-ns">
+            <p class="w-two-thirds-ns tj tl-ns">
                 Consolidate Health is a healthcare data app for American patients. As one of their first engineers,
                 I designed their patient data platform and built the product from the ground up.
             </p>
         </div>
     </div>
 
-    <div class="flex flex-column">
+    <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-center">
             <div class="w-third-ns pr3-ns">
                 <div class="pa3 br3" style="background: white; ">
@@ -166,7 +167,7 @@
                     {{ end }}
                 </div>
             </div>
-            <p class="w-two-thirds-ns">
+            <p class="w-two-thirds-ns tj tl-ns">
                 Gojek is an on-demand decacorn in Southeast Asia. I worked on
                 multiple products, including their ride-hailing platform, a voucher bundling system, an A/B
                 testing platform, a payments processor and a Kubernetes-based microservice deployment platform.
@@ -174,7 +175,7 @@
         </div>
     </div>
 
-    <div class="flex flex-column">
+    <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-center">
             <div class="w-third-ns pr3-ns">
                 <div class="pa3 br3" style="background: white; ">
@@ -183,7 +184,7 @@
                     {{ end }}
                 </div>
             </div>
-            <p class="w-two-thirds-ns">
+            <p class="w-two-thirds-ns tj tl-ns">
                 Staples Sparx was an arm of Staples that used machine learning to suggest content on Staples’
                 e-commerce
                 website. I built a web-based frontend for their internal A/B testing system.
