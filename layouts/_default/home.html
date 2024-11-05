@@ -41,31 +41,75 @@
 <h1> Things I've built </h1>
 <div class="column">
     <div class="flex flex-column">
-        <h3>Gradient</h3>
+        <a href="https://github.com/jysandy/Gradient">
+            <h3>Gradient</h3>
+        </a>
         <div class="flex flex-column">
             <div class="flex flex-column flex-row-ns">
                 <div class="w-50-ns flex flex-column">
                     {{ with resources.Get "images/gradient1.png" }}
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
                     {{ end }}
                     {{ with resources.Get "images/gradient4.png" }}
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
                     {{ end }}
                 </div>
                 <div class="w-50-ns flex flex-column">
                     {{ with resources.Get "images/gradient2.png" }}
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
                     {{ end }}
 
                     {{ with resources.Get "images/gradient3.png" }}
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
                     {{ end }}
                 </div>
             </div>
-            <p class="">
+            <p>
                 Gradient is a work-in-progress game engine that currently has some rendering and physics features.
                 Rendering features currently include PBR direct lighting and materials, HDR rendering with Narkowicz
                 ACES tonemapping, shadow mapping with PCF, normal mapping, bloom and environment mapping.
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-column">
+        <a href="https://github.com/jysandy/sandtrace">
+            <h3>sandtrace</h3>
+        </a>
+        <div class="flex flex-column">
+            <div class="flex flex-column flex-row-ns">
+                <div class="w-50-ns flex flex-column">
+                    {{ with resources.Get "images/sandtrace1.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
+                    {{ end }}
+                </div>
+                <div class="w-25-ns flex flex-column">
+                    {{ with resources.Get "images/sandtrace2.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
+                    {{ end }}
+
+                    {{ with resources.Get "images/sandtrace3.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1">
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            <p>
+                sandtrace is a non-real-time recursive ray-tracer written in C++. It runs completely on the CPU, with no
+                GPU acceleration.
             </p>
         </div>
     </div>
