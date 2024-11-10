@@ -54,7 +54,7 @@
             <div class="flex flex-column">
                 {{ with resources.Get "images/gradient4.png" }}
                 <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1">
+                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                 </a>
                 {{ end }}
 
@@ -62,27 +62,35 @@
                     <div class="w-70-ns">
                         {{ with resources.Get "images/gradient2.png" }}
                         <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
                         {{ end }}
                     </div>
                     <div class="w-30-ns flex flex-column">
                         {{ with resources.Get "images/gradient1.png" }}
                         <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
                         {{ end }}
 
                         {{ with resources.Get "images/gradient3.png" }}
                         <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
                         {{ end }}
                     </div>
 
                 </div>
-
             </div>
+            <a href="https://github.com/jysandy/Gradient" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                    <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                    <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a>
             <p class="tj tl-ns">
                 Gradient is a work-in-progress game engine.
                 It currently includes physics simulation with Jolt, PBR direct lighting and materials, HDR rendering
@@ -100,24 +108,33 @@
             <div class="flex flex-column">
                 {{ with resources.Get "images/sandtrace1.png" }}
                 <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1 w-100" style="max-height: 400px; object-fit: contain;">
+                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1 w-100" style="max-height: 400px; object-fit: contain;">
                 </a>
                 {{ end }}
 
                 <div class="flex flex-column flex-row-ns">
                     {{ with resources.Get "images/sandtrace2.png" }}
                     <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                     </a>
                     {{ end }}
 
                     {{ with resources.Get "images/sandtrace3.png" }}
                     <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                     </a>
                     {{ end }}
                 </div>
             </div>
+            <a href="https://github.com/jysandy/sandtrace" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                    <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                    <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a>
             <p class="tj tl-ns">
                 sandtrace is a non-real-time recursive ray-tracer written in C++. It runs completely on the CPU, with no
                 GPU acceleration.
