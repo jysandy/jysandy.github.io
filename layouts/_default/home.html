@@ -42,6 +42,12 @@
 
 {{/* Collection Section */}}
 
+<h1>Get in touch!</h1>
+<p>
+    If you're looking for an engine developer or graphics programmer, I'd love to hear from you! You can reach me at <a
+        href="mailto:jysandilya@gmail.com">jysandilya@gmail.com</a>.
+</p>
+
 <br>
 
 <h1> Things I've built </h1>
@@ -84,15 +90,15 @@
             </div>
             <a href="https://github.com/jysandy/Gradient" class="flex flex-row items-center">
                 {{ with resources.Get "images/github-mark.png" }}
-                    <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
                 {{ end }}
                 {{ with resources.Get "images/github-mark-white.png" }}
-                    <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
                 {{ end }}
                 <span class="ml2">View on Github</span>
             </a>
             <p class="tj tl-ns">
-                Gradient is a work-in-progress game engine.
+                Gradient is a work-in-progress game engine written in C++ and DirectX 11.
                 It currently includes physics simulation with Jolt, PBR direct lighting and materials, HDR rendering
                 with Narkowicz
                 ACES tonemapping, shadow mapping with PCF, normal mapping, bloom and environment mapping.
@@ -108,7 +114,8 @@
             <div class="flex flex-column">
                 {{ with resources.Get "images/sandtrace1.png" }}
                 <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1 w-100" style="max-height: 400px; object-fit: contain;">
+                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1 w-100"
+                        style="max-height: 400px; object-fit: contain;">
                 </a>
                 {{ end }}
 
@@ -128,10 +135,10 @@
             </div>
             <a href="https://github.com/jysandy/sandtrace" class="flex flex-row items-center">
                 {{ with resources.Get "images/github-mark.png" }}
-                    <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
                 {{ end }}
                 {{ with resources.Get "images/github-mark-white.png" }}
-                    <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
                 {{ end }}
                 <span class="ml2">View on Github</span>
             </a>
@@ -143,7 +150,6 @@
     </div>
 </div>
 
-<br>
 <br>
 
 <h1> Experiences I've had</h1>
@@ -223,7 +229,6 @@
 </div>
 
 <br>
-<br>
 
 <h1>Tech I've used</h1>
 
@@ -247,7 +252,6 @@
     </ul>
 </div>
 
-<br>
 <br>
 
 <h1>Odds and ends</h1>
@@ -297,5 +301,8 @@
         </div>
     </div>
 </div>
+
+<br>
+<br>
 
 {{ end }}
