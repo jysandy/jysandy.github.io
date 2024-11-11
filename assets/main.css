@@ -1,31 +1,30 @@
-.red-text
-{
+.red-text {
     color: red;
 }
 
-.column
-{
+.column {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-body.dark .light-only
-{
+body.dark .light-only {
     display: none;
 }
 
-body.light .dark-only
-{
+body.light .dark-only {
     display: none;
 }
 
-body.dark .dark-only.inline
-{
+body.dark .dark-only.inline {
     display: inline;
 }
 
-body.light .light-only.inline
-{
+body.light .light-only.inline {
     display: inline;
+}
+
+.youtube-video {
+    aspect-ratio: 16 / 9;
+    width: 100%;
 }

@@ -58,11 +58,10 @@
         </a>
         <div class="flex flex-column">
             <div class="flex flex-column">
-                {{ with resources.Get "images/gradient4.png" }}
-                <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                </a>
-                {{ end }}
+                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/GCoUOz8QhXY?si=yb9BNFQolV6UboOV"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 <div class="flex flex-column flex-row-ns">
                     <div class="w-70-ns">
@@ -283,8 +282,8 @@
 
     <div class="flex flex-column">
         <div class="flex flex-column flex-row-ns items-center">
-            <div class="w-third-ns">
-                <iframe width="210"
+            <div class="w-third-ns pr3-ns">
+                <iframe class="youtube-video"
                     src="https://www.youtube.com/embed/videoseries?si=vAqthPo20kt4l_3t&amp;controls=0&amp;list=PL2Q86tDyogSXCZnAwtxGa5cCmxEKosFZ-"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
