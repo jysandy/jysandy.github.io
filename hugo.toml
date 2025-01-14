@@ -23,12 +23,12 @@ I'm interested in game engine development, real-time rendering and functional pr
 """
 
 # Collection to display on home
-homeCollectionTitle = 'Posts'
+homeCollectionTitle = 'Blog'
 homeCollection = 'posts'
 
 # Lists parameters
 paginationSize = 100
-listSummaries = true
+listSummaries = false
 listDateFormat = '2 Jan 2006'
 
 # Breadcrumbs
@@ -57,3 +57,13 @@ url = "https://github.com/jysandy"
 [markup]
 [markup.highlight]
 style = 'algol'
+
+# Needed for math rendering
+[markup.goldmark]
+[markup.goldmark.extensions]
+[markup.goldmark.extensions.passthrough]
+enable = true
+
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\[', '\]'], ['$$', '$$']]
+inline = [['\(', '\)']]

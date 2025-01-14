@@ -28,3 +28,15 @@ body.light .light-only.inline {
     aspect-ratio: 16 / 9;
     width: 100%;
 }
+
+.full-width-image > img{
+    width: 100%;
+    object-fit: contain;
+}
+.full-width-image > figcaption > p {
+    text-align: center;
+}
+
+pre {
+    scrollbar-width: auto !important;
+}
