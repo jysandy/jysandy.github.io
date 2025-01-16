@@ -5,10 +5,14 @@ title = 'Water rendering in Gradient'
 math = true
 +++
 
-As someone new to graphics programming, diving into water rendering has been both exciting and challenging. In Gradient, my renderer project, I set out to create a water rendering system that balances realism and simplicity. This blog post shares my journey building my first water rendering system, from understanding the basics at first to refining and achieving visually appealing results.
+{{< figure 
+    src="/images/water-rendering/visuals-8.png" 
+    class="full-width-image" >}}
+
+I set out to create a water rendering system for Gradient, my DirectX 11 renderer project. As someone new to graphics programming, diving into water rendering has been both exciting and challenging. This blog post shares my experience building my first water rendering system, from understanding the basics at first to refining and achieving visually appealing results.
 
 ## Wave modelling and generation
-One of the most important components of water rendering is deforming a mesh to simulate waves convincingly. A water surface is typically modeled as a height field, where the height of the mesh at any given point is a periodic function of position and time. Acerola has an excellent video on the subject [here](https://www.youtube.com/watch?v=PH9q0HNBjT4). I decided to follow one of his references, [Effective Water Simulation from Physical Models](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models) by Mark Finch. These techniques would be considered pretty dated by today's standards, but I wanted to start from the basics. 
+One of the most important components of water rendering is deforming a mesh to simulate waves convincingly. A water surface is typically modeled as a height field, where the height of the mesh at any given point is a periodic function of position and time. Acerola has an excellent video on the subject [here](https://www.youtube.com/watch?v=PH9q0HNBjT4). I decided to follow one of his references, [Effective Water Simulation from Physical Models](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models) by Mark Finch. These techniques would be considered a bit dated by today's standards, but I wanted to start from the basics. 
 
 ### Height function and normals
 In GPU Gems, Finch starts with modelling waves as simple sums of sine waves and eventually goes on to discuss [Gerstner waves](https://en.wikipedia.org/wiki/Trochoidal_wave). The problem with Gerstner waves, however, is that a poor choice of parameters can cause loops to form above the wave crests. To keep things simple, I chose to use sine waves where the sine function is offset to be non-negative and is raised to an exponent. This exponent can be used to control the sharpness of the peaks of the waves. In the interest of brevity, I'll simply list the formulae here. A more complete treatment can be found in GPU Gems.
@@ -24,10 +28,8 @@ where
 * \(\varphi_{i}\) is the phase constant, which represents the speed of the crest of the wave.  
 * \(k\) controls the sharpness of the crests.
 
-The height at any given point is simply:
+The height at any given point is the sum of all \(n\) waves:
 \[H(x,y,t)=\sum_{i=0}^{n}W_{i}(x,y,t)\]
-
-for all \(n\) waves.
 
 {{< figure 
     src="/images/water-rendering/sin-waves.gif" 
@@ -35,11 +37,11 @@ for all \(n\) waves.
     caption="Waves modelled as a sum of sine functions. [View this graph](https://www.desmos.com/calculator/weldkgdm6q)" >}}
  
 
-In order for lighting to be computed correctly, the normals at each point on the surface must also be computed according to the height function. For any surface, the normal vector \(N(x,y)\) is the cross product of the binormal and tangent vectors at any point \((x,y)\). The binormal and tangent vectors are two orthogonal vectors that are tangential to the surface. Since the height function is an analytical function, the binormal and tangent vectors can also be computed analytically as the partial derivatives in the \(x\) and \(y\) directions respectively. The normal vector \(N(x,y)\) can then be computed as:
+To compute accurate lighting, I needed to calculate the normals for each point on the surface based on the height function. For any surface, the normal vector \(N(x,y)\) is the cross product of the binormal and tangent vectors at any point \((x,y)\). The binormal and tangent vectors are two orthogonal vectors that are tangential to the surface. Since the height function is an analytical function, the binormal and tangent vectors can also be computed analytically as the partial derivatives in the \(x\) and \(y\) directions respectively. The normal vector \(N(x,y)\) can then be computed as:
 
 \[N(x,y)=\left( -\frac{\partial}{\partial x}H(x,y,t), -\frac{\partial }{\partial y}H(x,y,t),1 \right)\]
 
-The partial derivative of our wave function of choice \(W_{i}(x,y,t)\) is:
+The partial derivative of my wave function of choice \(W_{i}(x,y,t)\) is:
 
 \[
 \frac{\partial}{\partial x} W_i(x, y, t) = 
@@ -121,7 +123,7 @@ void WaterPipeline::GenerateWaves()
 ```
 
 ## Mesh tessellation and displacement
-To actually draw this height field to the screen, we can draw a flat plane mesh and then displace its vertices according to our height function. This mesh will need a large number of vertices or it will look jagged and uneven. Too many vertices, however, will result in poor performance.
+To actually draw this height field to the screen, I can draw a flat plane mesh and then displace its vertices according to my height function. This mesh  needs a large number of vertices or it would look jagged and uneven. Too many vertices, however, will result in poor performance.
 
 Rather than generate the vertices ahead of time, I used DirectX 11's tessellation shader pipeline to generate additional vertices on the fly. This allows me to control the amount of tessellation at runtime: the plane can be highly tessellated close to the camera to render fine details and less tessellated far away to improve performance. 
 
@@ -210,16 +212,16 @@ With the displacement done, it's now time to work on the lighting and visuals!
 ## Pixel shading and visuals
 
 ### PBR lighting
-Gradient has a PBR (physically-based rendering) lighting system already, and I used this for my water shading. I'd like to cover my PBR lighting system in a later blog post, but for now, PBR is a modern lighting system that models surfaces in terms of real-world physical parameters. The three main parameters in my PBR implementation are albedo, which is the base colour of a surface, roughness, which controls how bumpy or rough a surface appears and metallic, which determines whether the surface is a metal or not. Rougher surfaces are less reflective, and metals are much more reflective than non-metals. 
+Gradient has a PBR (physically-based rendering) lighting system already, and I used this for my water shading. I'd like to cover my PBR lighting system in a later blog post, but for now, PBR is a modern approach to simulating realistic lighting based on the physical properties of materials. It focuses on how light interacts with surfaces like metals and non-metals. The three main parameters here are albedo, which is the base colour of a surface, roughness, which controls how bumpy or rough a surface appears and metallic, which determines whether the surface is a metal or not. Rougher surfaces are less reflective, and metals are much more reflective than non-metals. 
 
-Since water is a highly reflective surface, I set the roughness to a low value of `0.2` and the metallic to `1`, indicating that the surface should be reflective like a metal. I set the albedo to `(1, 1, 1)`, meaning that all colour would come through reflections. Gradient already has a cubemap-based reflection system for the sky dome. This causes the water surface to reflect the colours of the sky.
+Since water is a highly reflective surface, I set the roughness to a low value of `0.2` and the metallic to `1`, indicating that the surface should be reflective like a metal. I set the albedo to `(1, 1, 1)`, meaning that all colour would come through reflections. Gradient already has a cubemap-based reflection system for the sky dome. This causes the water surface to reflect the colours of the sky. Gradient also supports bloom as a post-process effect, and it looks great on the water surface. 
 
 {{< figure 
     src="/images/water-rendering/visuals-1.png" 
     class="full-width-image"
     caption="An early iteration of the water visuals." >}}
 
-My bloom also looks really good on the water surface! This is a great start, but there's a lot of noise on the water surface in the distance. (Admittedly, it's hard to see in a compressed still, but trust me, it's there.) To mitigate the noise, I interpolated the vertex normal with the up vector as the distance from the camera increases. This way, normals in the distance mostly point upward and don't cause as much noise.
+This is a good start, but there's a lot of noise on the water surface in the distance. (Admittedly, it's hard to see in a compressed still, but trust me, it's there.) To mitigate the noise, I interpolated the vertex normal with the up vector as the distance from the camera increases. This way, normals in the distance mostly point upward and don't cause as much noise.
 
 ```hlsl
 // Interpolate normals with the up vector 
@@ -247,7 +249,7 @@ float3 lodNormal(float3 N, float3 worldP)
     caption="When facing away from the sun." >}}
 
 ### Subsurface scattering
-Subsurface scattering is the phenomenon where light penetrates through a surface, bounces around inside and emerges from the surface again at a different place. The visible effect is that of a soft glow around parts of the object that are thin or dense. Subsurface scattering can be seen in a variety of materials, such as jade, skin and most importantly here, water.
+Subsurface scattering occurs when light penetrates a surface, scatters within it, and exits at a different point, creating a soft glow effect. Subsurface scattering can be seen in a variety of materials, such as jade, skin and most importantly here, water. It's an important component of water rendering since it helps add a sense of translucency.
 
 {{< youtube 1K9kQi9UZM0 >}}
 
@@ -313,7 +315,9 @@ The water still doesn't look quite right, though. The surface looks completely o
     class="full-width-image"
     caption="What am I missing?" >}}
 
-I was pretty stumped for a while, until I went on holiday and came across a large lake. There, I made some observations about the water's appearance.
+This problem had me stumped. Gradient isn't simply a side project, however - I was to submit it as my university coursework, and I was on a deadline. So at this point, I decided to stop working on the water and move on to other features, with the intention of working on the water later after I was done with my submission. 
+
+After the semester ended, I came across a large lake while on holiday. Here, I made some observations about the water's appearance that would lead to a breakthrough.
 
 {{< figure 
     src="/images/water-rendering/reference.jpg" 
@@ -357,3 +361,19 @@ Much better! The new shader properly conveys a sense of depth when looking strai
     src="/images/water-rendering/visuals-8.png" 
     class="full-width-image"
     caption="The final water visuals." >}}
+
+## Reflections (ha!) and scope for improvement
+
+{{< figure 
+    src="/images/water-rendering/visuals-9.png" 
+    class="full-width-image"
+    caption="The tiling on the water is quite obvious from certain angles." >}}
+
+There are still many issues with this water simulation:
+
+* The actual reflections on the water surface are currently quite unremarkable. This is because i) the water is only reflecting the sky dome and ii) the sky dome itself doesn't really have any details such as clouds.  Adding planar or screen-space reflections to the water surface and some details to the sky would make the visuals much more impressive.  
+* The water lacks finer detail when viewed up close. I could simply scroll a normal map over the water surface to alleviate this.
+* There's some very visible tiling, especially when viewing the water at an angle orthogonal to the wind direction. Adding more waves to the sine wave sum could mitigate this issue but it would be prohibitively expensive past a point. The water surface also lacks other details such as foam and choppiness. Tessendorf's approach to [water simulation using a fast Fourier transform](https://people.computing.clemson.edu/~jtessen/reports/papers_files/coursenotes2004.pdf) (FFT) is much more sophisticated and realistic, and this technique is used today in [Sea of Thieves](https://history.siggraph.org/learning/the-technical-art-of-sea-of-thieves-by-ang-catling-ciardi-and-kozin/).  
+* I would like to explore moving normal computation from the domain shader to the pixel shader. It's hard to predict what impact this would have on performance. On the one hand, this would allow me to get away with less tessellation since normals are computed per-pixel anyway. On the other hand, computing normals per pixel could be even more expensive, especially at higher resolutions.  
+
+Given that this is my first attempt at a water simulation though, I'm quite happy with the results! 
