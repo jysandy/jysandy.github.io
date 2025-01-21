@@ -1,7 +1,7 @@
 +++
 date = '2025-01-12T10:50:57+05:30'
 draft = false
-title = 'Water rendering in Gradient'
+title = 'Elementary Water Rendering'
 math = true
 +++
 
@@ -9,7 +9,7 @@ math = true
     src="/images/water-rendering/visuals-8.png" 
     class="full-width-image" >}}
 
-I set out to create a water rendering system for Gradient, my DirectX 11 renderer project. As someone new to graphics programming, diving into water rendering has been both exciting and challenging. This blog post shares my experience building my first water rendering system, from understanding the basics at first to refining and achieving visually appealing results.
+I set out to create a water rendering system for [Gradient](https://github.com/jysandy/Gradient), my DirectX 11 renderer project. As someone new to graphics programming, diving into water rendering has been both exciting and challenging. This blog post shares my experience building my first water rendering system.
 
 ## Wave modelling and generation
 One of the most important components of water rendering is deforming a mesh to simulate waves convincingly. A water surface is typically modeled as a height field, where the height of the mesh at any given point is a periodic function of position and time. Acerola has an excellent video on the subject [here](https://www.youtube.com/watch?v=PH9q0HNBjT4). I decided to follow one of his references, [Effective Water Simulation from Physical Models](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models) by Mark Finch. These techniques would be considered a bit dated by today's standards, but I wanted to start from the basics. 
