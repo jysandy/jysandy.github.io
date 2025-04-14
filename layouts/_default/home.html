@@ -80,27 +80,35 @@
         </a>
         <div class="flex flex-column">
             <div class="flex flex-column">
-                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/GCoUOz8QhXY?si=yb9BNFQolV6UboOV"
+                <!-- Video needs to be updated -->
+                <!-- <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/GCoUOz8QhXY?si=yb9BNFQolV6UboOV"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
 
+                <div class="w-100-ns">
+                    {{ with resources.Get "images/gradient1.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                    </a>
+                    {{ end }}
+                </div>
                 <div class="flex flex-column flex-row-ns">
                     <div class="w-70-ns">
-                        {{ with resources.Get "images/gradient2.png" }}
+                        {{ with resources.Get "images/gradient3.png" }}
                         <a href="{{ .RelPermalink }}">
                             <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
                         {{ end }}
                     </div>
                     <div class="w-30-ns flex flex-column">
-                        {{ with resources.Get "images/gradient1.png" }}
+                        {{ with resources.Get "images/gradient2.png" }}
                         <a href="{{ .RelPermalink }}">
                             <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
                         {{ end }}
 
-                        {{ with resources.Get "images/gradient3.png" }}
+                        {{ with resources.Get "images/gradient4.png" }}
                         <a href="{{ .RelPermalink }}">
                             <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
                         </a>
@@ -119,10 +127,10 @@
                 <span class="ml2">View on Github</span>
             </a>
             <p class="tj tl-ns">
-                Gradient is a work-in-progress game engine written in C++ and DirectX 11.
-                It currently includes physics simulation with Jolt, PBR direct lighting and materials, HDR rendering
-                with Narkowicz
-                ACES tonemapping, shadow mapping with PCF, normal mapping, bloom and environment mapping.
+                Gradient is a work-in-progress game engine written in C++ and DirectX 12.
+                It currently includes physics simulation and a first-person character controller using Jolt, 
+                PBR direct lighting and materials, HDR rendering, shadow mapping with PCF, bloom, environment mapping, 
+                water and procedurally generated foliage.
             </p>
         </div>
     </div>
