@@ -130,7 +130,65 @@
                 Gradient is a work-in-progress game engine written in C++ and DirectX 12.
                 It currently includes physics simulation and a first-person character controller using Jolt, 
                 PBR direct lighting and materials, HDR rendering, shadow mapping with PCF, bloom, environment mapping, 
-                water and procedurally generated foliage.
+                water and procedurally generated foliage with the leaves drawn using mesh shaders.
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-column">
+        <!-- TODO: Add link -->
+            <h3>CitruSpire: Quest For the Sacret Fruit</h3>
+        <div class="flex flex-column">
+            <div class="flex flex-column">
+
+
+                <div class="w-100-ns">
+                    {{ with resources.Get "images/lemonade1.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                    </a>
+                    {{ end }}
+                </div>
+                <div class="flex flex-column flex-row-ns">
+                    <div class="w-70-ns">
+                        {{ with resources.Get "images/lemonade3.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="w-30-ns flex flex-column">
+                        {{ with resources.Get "images/lemonade2.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+
+                        {{ with resources.Get "images/lemonade4.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+
+                </div>
+            </div>
+            <!-- <a href="https://github.com/jysandy/Gradient" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a> -->
+            <p class="tj tl-ns">
+                CitruSpire: Quest for the Sacred Fruit is a short 2.5D action platformer game made in Unreal Engine 5.4. 
+                I worked with a team of second year undergraduate students to build this as a part of my 
+                master's programme at Abertay University.
+                I was responsible for programming most of the core systems of the game, including character movement and animations, 
+                a camera pivoting mechanic, parallax 2D backgrounds, the save and checkpoint system and enemy AI, to name a few. 
+                I was also responsible for production of the project.
             </p>
         </div>
     </div>
@@ -264,7 +322,8 @@
 <div class="flex flex-row">
     <ul class="mr5">
         <li>C++</li>
-        <li>DirectX 11</li>
+        <li>DirectX 12</li>
+        <li>Unreal Engine</li>
         <li>Clojure</li>
         <li>C#</li>
         <li>Ruby</li>
