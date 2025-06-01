@@ -1,34 +1,30 @@
 +++
-date = '2025-05-10T16:44:28+01:00'
-draft = true
+date = '2025-06-01T17:00:00+01:00'
+draft = false
 title = 'Instancing Leaves with Mesh Shaders'
 +++
 
-In my [previous post](/posts/procedural-trees/), I introduced the idea of L-systems and how I used them to generate foliage procedurally. I quickly ran into performance issues, which I was able to address somewhat with frustum culling. In this post, I'll explain how I further optimized the scene by using DirectX 12's new mesh shader pipeline. I'll also touch on my use of a Z pre-pass, which mitigated some overdraw issues, especially with a large number of trees and leaves. 
+{{< figure 
+    src="/images/mesh-shaders/gpu-culling.png" 
+    class="full-width-image" 
+    caption="" >}}
 
-## Vertex shader instancing bottlenecks
+In my [previous post](/posts/procedural-trees/), I introduced the idea of L-systems and how I used them to generate foliage procedurally. I quickly ran into performance issues, which I was able to address somewhat with frustum culling. In this post, I'll explain how I further optimized the scene by using DirectX 12's new mesh shader pipeline. I'll also touch on my use of a Z-prepass, which mitigated some overdraw issues, especially with a large number of trees and leaves. 
 
-Let's first understand the problems with the vertex shader instancing pipeline. Recall that one very obvious hotspot from the previous post was a long scoreboard stall:
+## Vertex shader instancing bottleneck
+
+Let's first understand the problem with the vertex shader instancing pipeline. The vertex shader suffers from a long scoreboard stall which I documented in the previous post:
 
 {{< figure 
     src="/images/procedural-trees/lgsb-stall.png" 
     class="full-width-image" 
     caption="A long scoreboard stall">}}
 
-This means that the warp is stalled trying to read the instance data from memory. What can we do to mitigate this? Let's start with a few observations: 
-
-- Reading data from global memory (VRAM) is expensive and we ought to minimize or avoid it if we can.  
-- Instance data is being read multiple times per leaf. This is because the vertex shader is invoked once per vertex per instance.  
-- Each leaf has 8 vertices (4 each for the front and back faces), meaning that the instance data is being read 8 times per leaf.  
-- Reading from the L2 and L1 caches are cheaper than reading from VRAM.  
-- Cache hit rates are likely to be the highest when data accesses are [spatially local](https://en.wikipedia.org/wiki/Locality_of_reference) (i.e. we read data that is contiguous in memory).  
-- When instancing using `DrawIndexedInstanced`, threads in a warp are (as far as I know) not guaranteed to be working with consecutive values of `SV_InstanceID`. This means that threads in a given warp could have wildly varying values of `SV_InstanceID`, leading to cache thrashing when using `SV_InstanceID` for indexing.  
-
-I'm not entirely certain about the last point. There seems to be very little information about this on the Internet, and when I asked in the DirectX Discord, I was told that `SV_InstanceID` is not guaranteed to be consecutive across vertex shader threads in a warp. If anyone has any information about this, please let me know via [email](mailto:jysandilya@gmail.com) or [Bluesky](https://bsky.app/profile/jysandy.bsky.social).
+This means that the warp is stalled trying to read the instance data from memory. What can we do to mitigate this? Well, one observation we can make is that the instance data is being read multiple times per leaf. This is because the vertex shader is invoked once per vertex per instance. Each leaf has 8 vertices (4 each for the front and back faces), meaning that the instance data is being read 8 times per leaf. Cutting this down to once per leaf would likely get rid of this issue and this is where mesh shaders come in.
 
 ## Finer control with mesh shaders
 
-Using mesh shaders, we can both minimize the number of data reads and guarantee that they are spatially local. Mesh shaders are a new alternative to the geometry stages of the rendering pipeline, and can be thought of as compute shaders that can emit geometry. I won't explain them in elaborate detail, but for more information, [Shawn Hargreaves' introduction](https://youtu.be/CFXKTXtil34?si=CjqH24CrMEVQWFoU) and [Erik Jansson's GPU-driven rendering presentation](https://youtu.be/EtX7WnFhxtQ?si=NxcO6KcAzngUjztd) are both excellent resources.
+Mesh shaders are a new alternative to the geometry stages of the rendering pipeline, and can be thought of as compute shaders that can emit geometry. I won't explain them in elaborate detail, but for more information, [Shawn Hargreaves' introduction](https://youtu.be/CFXKTXtil34?si=CjqH24CrMEVQWFoU) and [Erik Jansson's GPU-driven rendering presentation](https://youtu.be/EtX7WnFhxtQ?si=NxcO6KcAzngUjztd) are both excellent resources.
 
 {{< figure 
     src="/images/mesh-shaders/mesh-shaders.png" 
@@ -48,7 +44,7 @@ The benefits don't end there, though. I can also perform frustum culling in the 
     class="full-width-image" 
     caption="GPU frustum culling the leaves" >}}
 
-For reference, the key parts of the mesh shader are given below. The complete code is available [here](https://github.com/jysandy/Gradient/blob/8988a5b27efe3f8154536fc6f53d4cf22586ef88/Core/Shaders/Billboard_MS.hlsl). I later added some very simple animation as well, which I've omitted below.
+For reference, the key parts of the mesh shader are given below. The complete code is available [here](https://github.com/jysandy/Gradient/blob/bca6455ba4238ba48d8840427ecd325c66507bc1/Core/Shaders/Billboard_MS.hlsl). I later added some very simple animation as well, which I've omitted below.
 
 
 ```hlsl
@@ -121,7 +117,7 @@ void Billboard_MS(
         // ... compute animation
 
         // Get transform and determine if we're front-facing
-        instanceTransform._41_42_43 = Instances[instanceIndex].LocalPositionWithPad.xyz;
+        instanceTransform._41_42_43 = instance.LocalPositionWithPad.xyz;
         
         float4x4 worldMatrix = mul(mul(animationTransform, instanceTransform), g_parentWorldMatrix);
 
@@ -217,7 +213,7 @@ Triangle RAM allocation (used to hold pixel shader attributes) has reduced in th
     class="full-width-image" 
     caption="ISBE allocation" >}}
 
-Stalls due to ISBE allocation have increased in the mesh shader implementation. ISBE memory is used to hold vertex attribute data. 
+Stalls due to ISBE allocation have increased in the mesh shader implementation. ISBE memory is used to hold vertex attribute data such as normals and texture coordinates. 
 
 ## Z-prepass
 
@@ -228,7 +224,7 @@ Emboldened by these performance improvements, I filled the rest of the island wi
     class="full-width-image" 
     caption="Quad overdraw, as visualised in RenderDoc" >}}
 
-Overdraw occurs when objects closer to the camera are drawn after objects that are further away. Since the objects closer to the camera must occlude the other objects, the contents of the render target are overwritten with their pixels, and this results in the pixel shader being invoked multiple times for a given pixel. In my scene, the overdraw is obviously caused by the huge number of leaves and branches. 
+Overdraw occurs when objects closer to the camera are drawn after objects that are further away. Since the objects closer to the camera must occlude the other objects, the contents of the render target are overwritten with their pixels, and this results in the pixel shader being invoked multiple times for a given pixel. In my scene, the overdraw is obviously caused by the huge number of (often overlapping) leaves and branches. 
 
 I used a z-prepass to mitigate overdraw. A z-prepass is a pass in which the scene is either partially or fully drawn to the depth buffer only without a pixel shader bound. The scene is then drawn again with the pixel shader bound. Since the depth buffer is already seeded with data, the pixel shader shouldn't be invoked more than once. Although this is effective in mitigating overdraw, one has to balance the cost of drawing the geometry twice. In my case, I drew only the leaves and branches as a part of the z-prepass, since those were the biggest overdraw offenders. In the forward pass, I disabled depth writes for geometry that had already been drawn in the z-prepass, and otherwise drew everything as normal. 
 
@@ -237,7 +233,7 @@ I used a z-prepass to mitigate overdraw. A z-prepass is a pass in which the scen
     class="full-width-image" 
     caption="The Z-prepass makes the forward pass cheaper" >}}
 
-Unfortunately nSight's overhead has made the z-prepass frame appear slower than the frame without the z-prepass, but when running the application normally, I observe a 3.5ms reduction in frame time thanks to the z-prepass. In the trace above, we can see that the forward pass has been made much cheaper thanks to the z-prepass.
+Unfortunately nSight's overhead has made the z-prepass frame appear slower than the frame without the z-prepass, but when running the application normally, I observe a 3.5ms reduction in frame time thanks to the z-prepass. In the trace above, we can see that the forward pass has been made much cheaper.
 
 {{< figure 
     src="/images/mesh-shaders/overdraw-fixed.png" 
@@ -249,12 +245,3 @@ As shown above, the z-prepass does indeed mitigate quad overdraw considerably.
 ## Conclusion
 
 In conclusion - I was able to use mesh shaders to draw leaves as alpha tested quads. They allowed me to minimise reads from the instance buffer and cut down on the submitted triangle count by performing various types of culling. In the future, I'd like to try drawing the rest of my geometry using mesh shaders as well by converting them to meshlets. There's also the opportunity to perform occlusion culling in the mesh shader to reduce the number of submitted triangles even further. I think this technique of emitting quads from a mesh shader has the potential to be useful for rendering particles as well.
-
-After adding the z-prepass, I made a number of other improvements to my engine. I added three different types of trees and bushes each, and scattered these randomly around the island as well, bringing the total leaf count to around 9.7 million. I animated the leaves in the mesh shader, tweaked the indirect lighting, added distance fog and set up GTAO. The frame time is of course view dependent and varies between 15-30ms inside the forest, and shoots up to 47ms when viewing the forest from the outside in.
-
-{{< figure 
-    src="/images/mesh-shaders/final-shot.png" 
-    class="full-width-image" 
-    caption="One last shot from my engine" >}}
-
-I'll have to leave my engine here for now to work on my master's thesis though. I'm working on a novel way to render volumetrics, so stay tuned for future posts!
