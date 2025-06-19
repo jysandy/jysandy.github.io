@@ -2,41 +2,55 @@
 <html lang="{{ or site.Language.LanguageCode site.Language.Lang }}"
   dir="{{ or site.Language.LanguageDirection `ltr` }}">
 
-  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css"/>
-  {{ $style := resources.Get "main.css" | resources.Minify | resources.Fingerprint }}
-  <link rel="stylesheet" href="{{ $style.Permalink }}">
-  <head>
-    {{ partial "head.html" . }}
-  </head>
+<link rel="stylesheet" href="https://unpkg.com/tachyons@4.12.0/css/tachyons.min.css" />
+{{ $style := resources.Get "main.css" | resources.Minify | resources.Fingerprint }}
+<link rel="stylesheet" href="{{ $style.Permalink }}">
 
-  {{ $theme := "auto"}}
+<head>
+  {{ partial "head.html" . }}
+</head>
 
-  {{ with .Param "theme" }}
-  {{ $theme = .}}
-  {{ end }}
+{{ $theme := "auto"}}
 
-  <body class="{{ $theme }}">
+{{ with .Param "theme" }}
+{{ $theme = .}}
+{{ end }}
 
-    <div class="content fl-w-90">
-      <header>
-        {{ partial "header.html" . }}
-      </header>
+<body class="{{ $theme }}">
 
-      <main class="main">
-        {{ block "main" . }}{{ end }}
-      </main>
-    </div>
+  <div class="content fl-w-90">
+    <header>
+      {{ partial "header.html" . }}
+    </header>
 
-    <footer>
-      {{ partial "footer.html" . }}
-    </footer>
-    
-  </body>
+    <main class="main">
+      {{ block "main" . }}{{ end }}
+    </main>
+  </div>
 
-  <script>
+  <footer>
+    {{ partial "footer.html" . }}
+  </footer>
+
+</body>
+
+<script>
 
   function isAuto() {
     return document.body.classList.contains("auto");
+  }
+
+  function seeMoreToggle(node) {
+    let p = Array.from(node.parentNode.children)
+      .filter(child => child !== node && child.matches("p"))[0];
+
+    if (p.classList.contains("dn")) {
+      p.classList.remove("dn");
+      node.innerHTML = "See less";
+    } else {
+      p.classList.add("dn");
+      node.innerHTML = "See more";
+    }
   }
 
   function setTheme() {

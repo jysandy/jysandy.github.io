@@ -182,23 +182,26 @@
             </a>
             <p class="tj tl-ns">
                 This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
-                blending. Instead of representing the participating medium using a density field or voxels, this method
-                builds on the work of <a href="https://www.youtube.com/watch?v=BbMGtfMei10">Thibault Tricard's Interval
+                blending. Instead of representing the participating medium using a density field or voxels, this
+                method
+                builds on the work of <a href="https://www.youtube.com/watch?v=BbMGtfMei10">Thibault Tricard's
+                    Interval
                     Shading</a> to draw volumetric particles as tetrahedrons that are composed of
-                participating media. This project forms my master's dissertation, and is still under active development.
+                participating media. This project forms my master's dissertation, and is still under active
+                development.
             </p>
 
-            <p class="tj tl-ns">
-                Radiance is integrated analytically for a single tetrahedron using the depth
-                interval provided by interval shading. The tetrahedrons are drawn furthest-to-nearest and blending is
-                used to integrate radiance across all particles. Self shadowing is achieved by first rendering optical
-                depth into a light-space 3D texture similar to conventional shadow maps. To determine the radiance
-                arriving at a depth interval, this 3D texture is sampled at both interval boundaries and linearly
-                interpolated. This doesn't result in artifacts since the tetrahedrons are relatively small compared to
-                the resolution of the shadow map. Furthermore, since this technique doesn't use ray-marching and doesn't
-                represent the participating medium as any sort of scalar field, there are no aliasing or noise artifacts
-                caused due to under-sampling.
-            </p>
+            {{ partial "seeMore.html"
+            `Radiance is integrated analytically for a single tetrahedron using the depth interval provided by interval
+            shading. The tetrahedrons are drawn furthest-to-nearest and blending is
+            used to integrate radiance across all particles. Self shadowing is achieved by first rendering
+            optical depth into a light-space 3D texture similar to conventional shadow maps. To determine the
+            radiance arriving at a depth interval, this 3D texture is sampled at both interval boundaries and
+            linearly interpolated. This doesn't result in artifacts since the tetrahedrons are relatively small
+            compared to the resolution of the shadow map. Furthermore, since this technique doesn't use ray-marching and
+            doesn't represent the participating medium as any sort of scalar field, there are no aliasing or noise
+            artifacts caused due to under-sampling.`
+            }}
         </div>
     </div>
 
