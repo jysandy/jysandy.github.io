@@ -74,17 +74,17 @@
 
 <h1> Things I've built </h1>
 <div class="column">
+
     <div class="flex flex-column">
         <a href="https://github.com/jysandy/Gradient">
             <h3>Gradient</h3>
         </a>
         <div class="flex flex-column">
             <div class="flex flex-column">
-                <!-- Video needs to be updated -->
-                <!-- <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/GCoUOz8QhXY?si=yb9BNFQolV6UboOV"
+                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/3tSDQUCSKoo"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 <div class="w-100-ns">
                     {{ with resources.Get "images/gradient1.png" }}
@@ -128,10 +128,119 @@
             </a>
             <p class="tj tl-ns">
                 Gradient is a game engine written in C++ and DirectX 12.
-                It currently includes physics simulation and a first-person character controller using Jolt, 
-                PBR direct lighting and materials, HDR rendering, shadow mapping with PCF, bloom, environment mapping, 
-                water and procedurally generated foliage. The 9.7 million leaves are individually instanced, culled and 
+                It currently includes physics simulation and a first-person character controller using Jolt,
+                PBR direct lighting and materials, HDR rendering, shadow mapping with PCF, bloom, environment mapping,
+                water and procedurally generated foliage. The 9.7 million leaves are individually instanced, culled and
                 animated using a mesh shader.
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-column">
+        <a href="https://github.com/jysandy/IntervalShadedVolumetrics">
+            <h3>Interval Shaded Volumetrics</h3>
+        </a>
+        <div class="flex flex-column">
+            <div class="flex flex-column">
+                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/2GmEsqfMqtY"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                <div class="flex flex-column flex-row-ns">
+                    <div class="w-70-ns">
+                        {{ with resources.Get "images/isv-1.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="w-30-ns flex flex-column">
+                        {{ with resources.Get "images/isv-3.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+
+                        {{ with resources.Get "images/isv-2.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+
+                </div>
+            </div>
+            <a href="https://github.com/jysandy/IntervalShadedVolumetrics" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a>
+            <p class="tj tl-ns">
+                This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
+                blending. Instead of representing the participating medium using a density field or voxels, this method
+                builds on the work of <a href="https://www.youtube.com/watch?v=BbMGtfMei10">Thibault Tricard's Interval
+                    Shading</a> to draw volumetric particles as tetrahedrons that are composed of
+                participating media. This project forms my master's dissertation, and is still under active development.
+            </p>
+
+            <p class="tj tl-ns">
+                Radiance is integrated analytically for a single tetrahedron using the depth
+                interval provided by interval shading. The tetrahedrons are drawn furthest-to-nearest and blending is
+                used to integrate radiance across all particles. Self shadowing is achieved by first rendering optical
+                depth into a light-space 3D texture similar to conventional shadow maps. To determine the radiance
+                arriving at a depth interval, this 3D texture is sampled at both interval boundaries and linearly
+                interpolated. This doesn't result in artifacts since the tetrahedrons are relatively small compared to
+                the resolution of the shadow map. Furthermore, since this technique doesn't use ray-marching and doesn't
+                represent the participating medium as any sort of scalar field, there are no aliasing or noise artifacts
+                caused due to under-sampling.
+            </p>
+        </div>
+    </div>
+
+    <div class="flex flex-column">
+        <a href="https://github.com/jysandy/sandtrace">
+            <h3>sandtrace</h3>
+        </a>
+        <div class="flex flex-column">
+            <div class="flex flex-column">
+                {{ with resources.Get "images/sandtrace1.png" }}
+                <a href="{{ .RelPermalink }}">
+                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1 w-100"
+                        style="max-height: 400px; object-fit: contain;">
+                </a>
+                {{ end }}
+
+                <div class="flex flex-column flex-row-ns">
+                    {{ with resources.Get "images/sandtrace2.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                    </a>
+                    {{ end }}
+
+                    {{ with resources.Get "images/sandtrace3.png" }}
+                    <a href="{{ .RelPermalink }}">
+                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                    </a>
+                    {{ end }}
+                </div>
+            </div>
+            <a href="https://github.com/jysandy/sandtrace" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a>
+            <p class="tj tl-ns">
+                sandtrace is a non-real-time Whitted ray-tracer written in C++. I worked on it during my undergrad in
+                2014.
             </p>
         </div>
     </div>
@@ -188,55 +297,14 @@
                 <span class="ml2">Download on itch.io</span>
             </a>
             <p class="tj tl-ns">
-                CitruSpire: Quest for the Sacred Fruit is a short 2.5D action platformer game made in Unreal Engine 5.4. 
-                I worked with a team of second year undergraduate students to build this as a part of my 
+                CitruSpire: Quest for the Sacred Fruit is a short 2.5D action platformer game made in Unreal Engine 5.4.
+                I worked with a team of second year undergraduate students to build this as a part of my
                 master's programme at Abertay University.
-                I was responsible for programming most of the core systems of the game, including character movement and animations, 
-                a camera pivoting mechanic, parallax 2D backgrounds, the save and checkpoint system and enemy AI, to name a few. 
+                I was responsible for programming most of the core systems of the game, including character movement and
+                animations,
+                a camera pivoting mechanic, parallax 2D backgrounds, the save and checkpoint system and enemy AI, to
+                name a few.
                 I was also responsible for production of the project.
-            </p>
-        </div>
-    </div>
-
-    <div class="flex flex-column">
-        <a href="https://github.com/jysandy/sandtrace">
-            <h3>sandtrace</h3>
-        </a>
-        <div class="flex flex-column">
-            <div class="flex flex-column">
-                {{ with resources.Get "images/sandtrace1.png" }}
-                <a href="{{ .RelPermalink }}">
-                    <img src="{{ .RelPermalink }}" class="pa1-ns pv1 w-100"
-                        style="max-height: 400px; object-fit: contain;">
-                </a>
-                {{ end }}
-
-                <div class="flex flex-column flex-row-ns">
-                    {{ with resources.Get "images/sandtrace2.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                    </a>
-                    {{ end }}
-
-                    {{ with resources.Get "images/sandtrace3.png" }}
-                    <a href="{{ .RelPermalink }}">
-                        <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                    </a>
-                    {{ end }}
-                </div>
-            </div>
-            <a href="https://github.com/jysandy/sandtrace" class="flex flex-row items-center">
-                {{ with resources.Get "images/github-mark.png" }}
-                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
-                {{ end }}
-                {{ with resources.Get "images/github-mark-white.png" }}
-                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
-                {{ end }}
-                <span class="ml2">View on Github</span>
-            </a>
-            <p class="tj tl-ns">
-                sandtrace is a non-real-time recursive ray-tracer written in C++. It runs completely on the CPU, with no
-                GPU acceleration.
             </p>
         </div>
     </div>
