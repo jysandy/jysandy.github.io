@@ -1,7 +1,7 @@
 <span>
-    <p class="tj tl-ns dn">
-        {{ . }}
-    </p>
+    <span class="dn" data-hidden>
+        {{ . | safeHTML }}
+    </span>
 
-    <a class="pointer" onclick="seeMoreToggle(this)">See more</a>
+    <button class="underline" onclick="seeMoreToggle(this)">See more</a>
 </span>

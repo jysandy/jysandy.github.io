@@ -42,7 +42,7 @@
 
   function seeMoreToggle(node) {
     let p = Array.from(node.parentNode.children)
-      .filter(child => child !== node && child.matches("p"))[0];
+      .filter(child => child !== node && child.matches("[data-hidden]"))[0];
 
     if (p.classList.contains("dn")) {
       p.classList.remove("dn");

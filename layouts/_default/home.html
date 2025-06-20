@@ -127,12 +127,92 @@
                 <span class="ml2">View on Github</span>
             </a>
             <p class="tj tl-ns">
-                Gradient is a game engine written in C++ and DirectX 12.
-                It currently includes physics simulation and a first-person character controller using Jolt,
-                PBR direct lighting and materials, HDR rendering, shadow mapping with PCF, bloom, environment mapping,
-                water and procedurally generated foliage. The 9.7 million leaves are individually instanced, culled and
-                animated using a mesh shader.
+                Gradient is a game engine written in C++ and DirectX 12. It uses forward rendering with a Z-prepass.
+                The scene has 9.7 million leaves which are individually instanced, culled and animated on the GPU using
+                a mesh shader. Some other major features are physics simulation and a first-person character controller
+                using Jolt, frustum culling, PBR materials, HDR rendering, water and procedurally generated foliage.
             </p>
+
+            {{ partial "seeMore.html"
+            `
+            <p class="tj tl-ns">
+                Here's a more exhaustive list of features and references:
+            <ul>
+                <li>
+                    Mesh shaders are used to render the 9.7 million leaves in the scene. The mesh shader also performs
+                    frustum culling on the GPU, in all passes. Details and performance discussion <a
+                        href="/posts/mesh-shaders/">here</a>.
+                </li>
+
+                <li>
+                    A basic scene tree and entity system built on <a href="https://github.com/skypjack/entt">entt</a>.
+                    entt is used to group physics bodies, meshes, transforms, materials, instance data and more.
+                </li>
+
+                <li>PBR direct lighting and materials based on UE4's roughness-metallic workflow.
+                    <ul>
+                        <li>Image-based lighting using a BRDF LUT is currently not implemented. Since I was short on
+                            time, I used a cheap approximation instead.
+                            To compute indirect lighting, the reflected view vector is used to sample the sky dome. A
+                            flat ambient term is added to this value and the result is fed to the BRDF. This step is
+                            repeated by sampling the sky dome using the surface normal and the two results are combined.
+                            Refer to the source <a
+                                href="https://github.com/jysandy/Gradient/blob/11e54c8e08c79bec53f8d7c7dc8a78f329c4a87f/Core/Shaders/PBRLighting.hlsli#L340">here</a>
+                            for details.
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    GTAO (without bent normals) using <a href="https://github.com/GameTechDev/XeGTAO">XeGTAO</a>.
+                </li>
+
+                <li>
+                    Physics simulation and first-person movement using the <a
+                        href="https://github.com/jrouwe/JoltPhysics">Jolt</a> physics engine.
+                </li>
+
+                <li>
+                    Water simulation using hardware tesselation. Refer to <a
+                        href="/posts/gradient-water-rendering/">this blog post</a> for details.
+                </li>
+
+                <li>
+                    Procedurally generated foliage using L-systems. Details are in <a
+                        href="/posts/procedural-trees/">this blog post</a>.
+                </li>
+
+                <li>
+                    Coarse frustum culling on the CPU. This is done for all passes, including the shadow pass. Details
+                    <a href="/posts/procedural-trees/">here</a>. The culling frustum can be frozen in place to observe
+                    the effects.
+                </li>
+
+                <li>
+                    Shadow mapping with large kernel PCF. The shadow frustum is fit around the camera frustum for
+                    culling and to make efficient use of the shadow map texels.
+                </li>
+
+                <li>
+                    Point lights with shadows. Culling is in place when drawing point light shadows as well.
+                </li>
+
+                <li>
+                    Normal mapping without precomputed tangents, as explained by Christian Schüler <a
+                        href="http://www.thetenthplanet.de/archives/1180">here</a>.
+                </li>
+
+                <li>
+                    A translucency-based subsurface scattering approximation, explained by Alan Zucconi <a
+                        href="https://www.alanzucconi.com/2017/08/30/fast-subsurface-scattering-1/">here</a>. This is in
+                    turn based on EA's presentation <a
+                        href="https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/">here</a>.
+                    I used this for both the <a href="/posts/gradient-water-rendering/">water</a> and the leaves.
+                </li>
+            </ul>
+            </p>
+            `
+            }}
         </div>
     </div>
 
@@ -192,15 +272,21 @@
             </p>
 
             {{ partial "seeMore.html"
-            `Radiance is integrated analytically for a single tetrahedron using the depth interval provided by interval
-            shading. The tetrahedrons are drawn furthest-to-nearest and blending is
-            used to integrate radiance across all particles. Self shadowing is achieved by first rendering
-            optical depth into a light-space 3D texture similar to conventional shadow maps. To determine the
-            radiance arriving at a depth interval, this 3D texture is sampled at both interval boundaries and
-            linearly interpolated. This doesn't result in artifacts since the tetrahedrons are relatively small
-            compared to the resolution of the shadow map. Furthermore, since this technique doesn't use ray-marching and
-            doesn't represent the participating medium as any sort of scalar field, there are no aliasing or noise
-            artifacts caused due to under-sampling.`
+            `
+            <p class="tj tl-ns">
+                Radiance is integrated analytically for a single tetrahedron using the depth interval provided by
+                interval
+                shading. The tetrahedrons are drawn furthest-to-nearest and blending is
+                used to integrate radiance across all particles. Self shadowing is achieved by first rendering
+                optical depth into a light-space 3D texture similar to conventional shadow maps. To determine the
+                radiance arriving at a depth interval, this 3D texture is sampled at both interval boundaries and
+                linearly interpolated. This doesn't result in artifacts since the tetrahedrons are relatively small
+                compared to the resolution of the shadow map. Furthermore, since this technique doesn't use ray-marching
+                and
+                doesn't represent the participating medium as any sort of scalar field, there are no aliasing or noise
+                artifacts caused due to under-sampling.
+            </p>
+            `
             }}
         </div>
     </div>
