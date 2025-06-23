@@ -2,6 +2,8 @@
 date = '2025-06-01T17:00:00+01:00'
 draft = false
 title = 'Instancing Leaves with Mesh Shaders'
+[params]
+    thumbnail = '/images/mesh-shaders/gpu-culling.png'
 +++
 
 {{< figure 

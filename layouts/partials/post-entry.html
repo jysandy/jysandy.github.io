@@ -1,0 +1,25 @@
+<div class="flex flex-row items-center pv1">
+
+    {{ $dateFormat := "2 Jan 2006"}}
+    {{ with .Site.Params.listDateFormat }}
+    {{ $dateFormat = .}}
+    {{ end }}
+
+    <a href="{{ .RelPermalink }}" class="w4">
+        <img src="{{ .Params.thumbnail }}">
+    </a>
+
+    <p class="line-date">{{ .Date.Format $dateFormat }} </p>
+
+    <div class="w-two-thirds">
+        <p class="line-title">
+            <a href="{{ .RelPermalink }}">
+                {{ .Title }}
+            </a>
+        </p>
+
+        {{ if .Site.Params.listSummaries }}
+        <p class="line-summary"> {{ .Summary }} </p>
+        {{ end }}
+    </div>
+</div>

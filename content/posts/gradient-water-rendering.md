@@ -3,6 +3,8 @@ date = '2025-01-12T10:50:57+05:30'
 draft = false
 title = 'Elementary Water Rendering'
 math = true
+[params]
+    thumbnail = '/images/water-rendering/visuals-8.png'
 +++
 
 {{< figure 

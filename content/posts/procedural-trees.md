@@ -3,6 +3,8 @@ date = '2025-04-12T16:02:56+01:00'
 draft = false
 title = 'Procedural Foliage Rendering with L-systems and Geometry Instancing'
 math = true
+[params]
+    thumbnail = '/images/procedural-trees/tree-with-leaves.png'
 +++
 
 {{< figure 
