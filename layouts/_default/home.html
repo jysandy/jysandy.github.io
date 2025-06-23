@@ -441,6 +441,8 @@
 
 <h1> Experiences I've had</h1>
 <div class="column">
+    <!-- <p>TODO: Write about years of exp and nilenso vs clients here</p> -->
+
     <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-center">
             <div class="w-100 w-third-ns pr3-ns">
@@ -461,24 +463,8 @@
     </div>
 
     <div class="flex flex-column mv3">
-        <div class="flex flex-column flex-row-ns items-center">
-            <div class="w-third-ns pr3-ns">
-                <div class="pa3 br3" style="background: white; ">
-                    {{ with resources.Get "images/ch-logo.webp" }}
-                    <img src="{{ .RelPermalink }}">
-                    {{ end }}
-                </div>
-            </div>
-            <p class="w-two-thirds-ns tj tl-ns">
-                Consolidate Health is a healthcare data app for American patients. As one of their first engineers,
-                I designed their patient data platform and built the product from the ground up.
-            </p>
-        </div>
-    </div>
-
-    <div class="flex flex-column mv3">
-        <div class="flex flex-column flex-row-ns items-center">
-            <div class="w-third-ns pr3-ns">
+        <div class="flex flex-column flex-row-ns items-start">
+            <div class="w-third-ns pr3-ns pt4-ns">
                 <div class="pa3 br3" style="background: white; ">
                     {{ with resources.Get "images/gojek-logo.png" }}
                     <a href="https://gojek.com">
@@ -487,11 +473,116 @@
                     {{ end }}
                 </div>
             </div>
-            <p class="w-two-thirds-ns tj tl-ns">
-                Gojek is an on-demand decacorn in Southeast Asia. I worked on
-                multiple products, including their ride-hailing platform, a voucher bundling system, an A/B
-                testing platform, a payments processor and a Kubernetes-based microservice deployment platform.
-            </p>
+
+            <div class="w-two-thirds-ns tj tl-ns">
+                <p>
+                    Gojek is an on-demand decacorn in Southeast Asia. I worked on multiple mission-critical systems,
+                    including their ride-hailing platform, the A/B testing system, a payment processing system and many
+                    others.
+                </p>
+
+                {{ partial "seeMore.html"
+                `
+                <ul>
+                    <li>
+                        I built a fault-tolerant payment processing system for the ride-hailing product. The system was
+                        designed to be eventually consistent. It automatically retried failed payments, and had controls
+                        for manual intervention as a fallback or in the event of a serious outage.
+                    </li>
+                    <li>
+                        As a part of the on-call rotation, I responded to and debugged production outages and customer
+                        support tickets. I wrote root-cause analyses for any outages that occured while I was on
+                        call.
+                    </li>
+                    <li>
+                        I built a configurable, rule-based traffic segmentation system for the company’s main A/B
+                        testing platform.
+                        <ul>
+                            <li>
+                                Traffic was routed into one of two variants: the treatment group or control group. Each
+                                group could be assigned a percentage of traffic.
+                            </li>
+                            <li>
+                                Changing the traffic percentage assignment later results in a minimal number of
+                                customers moving from one variant to another, so as to retain stickiness of sessions and
+                                minimise disruption.
+                            </li>
+                            <li>
+                                Product managers and developers could also route customers using a set of rules. More
+                                details in this blog post by my colleague <a
+                                    href="https://www.gojek.io/blog/introducing-litmus-gojeks-own-experimentation-platform">here</a>.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        I trained and mentored a team of 6 developers in the Clojure programming language, and worked
+                        with them to build and ship a new microservice written in Clojure.
+                        <ul>
+                            <li>
+                                I conducted structured classes and workshops for the first couple of weeks.
+                            </li>
+                            <li>
+                                After that, I pair programmed with the other engineers in the team to further develop
+                                their comfort with the language.
+                            </li>
+                            <li>
+                                I also contributed to the design and architecture of the system itself.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        I maintained multiple large databases (>900 GB in size, >25k writes per minute) and tuned them
+                        for performance and throughput.
+                        <ul>
+                            <li>
+                                I set up telemetry queries to monitor the health of the ride-hailing database, and these
+                                were eventually put to use in databases across the company.
+                            </li>
+                            <li>
+                                I archived large volumes of data (~700-800 GB) with zero downtime.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        I mentored junior developers and coached them on good software architecture, iterative
+                        development and other aspects of professional software development.
+                    </li>
+                </ul>
+                `
+                }}
+            </div>
+        </div>
+    </div>
+
+    <div class="flex flex-column mv3">
+        <div class="flex flex-column flex-row-ns items-start">
+            <div class="w-third-ns pr3-ns pt4-ns">
+                <div class="pa3 br3" style="background: white; ">
+                    {{ with resources.Get "images/ch-logo.webp" }}
+                    <img src="{{ .RelPermalink }}">
+                    {{ end }}
+                </div>
+            </div>
+            <div class="w-two-thirds-ns tj tl-ns">
+                <p>
+                    Consolidate Health is a healthcare data app for American patients. As one of their first 3
+                    engineers,
+                    I designed their patient data platform and built the product from the ground up.
+                </p>
+
+                {{ partial "seeMore.html"
+                `
+                <ul>
+                    <li>
+                        I designed and built the patient data ingestion system which was central to the product.
+                    </li>
+                    <li>
+                        I set up the system's infrastructure in AWS, and built the CI/CD pipelines needed to deploy it.
+                    </li>
+                </ul>
+                `
+                }}
+            </div>
         </div>
     </div>
 
