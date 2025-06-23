@@ -441,26 +441,27 @@
 
 <h1> Experiences I've had</h1>
 <div class="column">
-    <!-- <p>TODO: Write about years of exp and nilenso vs clients here</p> -->
-
-    <div class="flex flex-column mv3">
-        <div class="flex flex-column flex-row-ns items-center">
-            <div class="w-100 w-third-ns pr3-ns">
-                <div class="pa3 br3 flex flex-column items-center" style="background: white;">
-                    {{ with resources.Get "images/nilenso-logo.svg" }}
-                    <a href="https://nilenso.com">
-                        <img src="{{ .RelPermalink }}">
-                    </a>
-                    {{ end }}
-                </div>
-            </div>
-            <p class="w-two-thirds-ns tj tl-ns">
-                nilenso is an employee-owned software cooperative. I worked with clients (listed below) to build
-                complex and scalable backend services, and to coach and train their developers as necessary. I also
-                helped define hiring strategy at nilenso and have mentored and trained junior engineers.
-            </p>
+    <div class="w-third-ns center">
+        <div class="pa3 br3 flex flex-column items-center" style="background: white;">
+            {{ with resources.Get "images/nilenso-logo.svg" }}
+            <a href="https://nilenso.com">
+                <img src="{{ .RelPermalink }}">
+            </a>
+            {{ end }}
         </div>
     </div>
+
+    <p>
+        I've worked professionally as a software engineer for around 7 years. Almost all of that time was spent at
+        <a href="https://nilenso.com/">nilenso</a>, an employee-owned software consultancy. I worked with clients to
+        build complex and scalable backend services. I also played the role of a hiring manager at nilenso and have
+        mentored and trained junior engineers.
+    </p>
+
+    <p>
+        I helped clients and teams build better products, both by delivering software to a high standard myself and by
+        coaching and advising teams that I worked with. These are some of the clients whom I've worked with:
+    </p>
 
     <div class="flex flex-column mv3">
         <div class="flex flex-column flex-row-ns items-start">
@@ -485,7 +486,8 @@
                 `
                 <ul>
                     <li>
-                        I built a fault-tolerant payment processing system for the ride-hailing product. The system was
+                        I built a fault-tolerant payment processing system for the ride-hailing product, in a team of 3
+                        engineers. The system was
                         designed to be eventually consistent. It automatically retried failed payments, and had controls
                         for manual intervention as a fallback or in the event of a serious outage.
                     </li>
@@ -566,15 +568,15 @@
             <div class="w-two-thirds-ns tj tl-ns">
                 <p>
                     Consolidate Health is a healthcare data app for American patients. As one of their first 3
-                    engineers,
-                    I designed their patient data platform and built the product from the ground up.
+                    engineers, I designed their patient data platform and built the product from the ground up.
                 </p>
 
                 {{ partial "seeMore.html"
                 `
                 <ul>
                     <li>
-                        I designed and built the patient data ingestion system which was central to the product.
+                        I designed and built the patient data ingestion system which was central to the product. This
+                        system fetched, aggregated and normalized patient data from a variety of configurable sources.
                     </li>
                     <li>
                         I set up the system's infrastructure in AWS, and built the CI/CD pipelines needed to deploy it.
