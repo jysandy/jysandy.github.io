@@ -76,6 +76,126 @@
 <div class="column">
 
     <div class="flex flex-column">
+        <a href="https://github.com/jysandy/IntervalShadedVolumetrics">
+            <h3>Interval Shaded Volumetrics</h3>
+        </a>
+        <div class="flex flex-column">
+            <div class="flex flex-column">
+                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/FJExMr9y3Es"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                <div class="flex flex-column flex-row-ns">
+                    <div class="w-70-ns">
+                        {{ with resources.Get "images/isv-1.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+                    <div class="w-30-ns flex flex-column">
+                        {{ with resources.Get "images/isv-3.png" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+
+                        {{ with resources.Get "images/isv-2.gif" }}
+                        <a href="{{ .RelPermalink }}">
+                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
+                        </a>
+                        {{ end }}
+                    </div>
+
+                </div>
+            </div>
+            <a href="https://github.com/jysandy/IntervalShadedVolumetrics" class="flex flex-row items-center">
+                {{ with resources.Get "images/github-mark.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
+                {{ end }}
+                {{ with resources.Get "images/github-mark-white.png" }}
+                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
+                {{ end }}
+                <span class="ml2">View on Github</span>
+            </a>
+            <p class="tj tl-ns">
+                This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
+                blending. The volumetric particles are represented by tetrahedrons which are converted to triangle
+                proxies using a mesh shader. This project forms my master's dissertation, and is still under active
+                development.
+            </p>
+
+            {{ partial "seeMore.html"
+            `
+            <p class="tj tl-ns">
+            <ul>
+                <li>
+                    This method builds on the work of <a href="https://www.youtube.com/watch?v=BbMGtfMei10">Thibault
+                        Tricard's Interval Shading</a> to draw volumetric particles as tetrahedrons that are composed of
+                    participating media.
+                </li>
+
+                <li>
+                    Interval Shading uses mesh shaders to splat tetrahedrons to the screen as triangle proxies. Vertex
+                    attributes are set in such a way that after rasterization, the pixel shader receives two depths: one
+                    for the front face of the tetrahedron and one for the back. This depth interval can then be used for
+                    shading.
+                </li>
+
+                <li>
+                    Since the medium is represented by a rasterized particle system instead of a density field or
+                    voxels, it is easy to animate and can be used for interactive simulations, as demonstrated in the
+                    video.
+                </li>
+
+                <li>
+                    Radiance is integrated for a single tetrahedron using the depth interval provided by interval
+                    shading. The tetrahedrons are sorted on the GPU and drawn furthest-to-nearest and blending is used
+                    to integrate radiance across all particles.
+                </li>
+
+                <li>
+                    Self shadowing is achieved by first rendering optical thickness into a light-space 3D texture
+                    similar to
+                    conventional shadow maps. To determine the optical thickness along the light ray at any point along
+                    a depth interval, this 3D texture is sampled at both interval boundaries and linearly interpolated.
+                </li>
+
+                <li>
+                    To make the tetrahedron edges less visible, extinction is exponentially faded with distance from the
+                    particle centre. Solving the resulting integral analytically is impractical, so Simpson's rule is
+                    used to integrate radiance across a depth interval instead. Only one additional sample in the middle
+                    of the depth interval is used.
+                </li>
+
+                <li>
+                    Some of the planned future work includes:
+
+                    <ul>
+                        <li>Shadowing of the medium by opaque objects.</li>
+                        <li>Casting volumetric shadows onto opaque objects.</li>
+                        <li>
+                            Performance optimizations:
+                            <ul>
+                                <li>Draw to a lower resolution to reduce pixel shader cost, then upscale and composite.
+                                </li>
+                                <li>Frustum culling when drawing the volumetric shadow map.</li>
+                                <li>Early-Z culling does not work with this method. Therefore, occlusion culling has to
+                                    be performed in the mesh shader.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            </p>
+            `
+            }}
+        </div>
+    </div>
+
+    <div class="flex flex-column">
         <a href="https://github.com/jysandy/Gradient">
             <h3>Gradient</h3>
         </a>
@@ -209,119 +329,6 @@
                         href="https://colinbarrebrisebois.com/2011/03/07/gdc-2011-approximating-translucency-for-a-fast-cheap-and-convincing-subsurface-scattering-look/">here</a>.
                     I used this for both the <a href="/posts/gradient-water-rendering/">water</a> and the leaves.
                 </li>
-            </ul>
-            </p>
-            `
-            }}
-        </div>
-    </div>
-
-    <div class="flex flex-column">
-        <a href="https://github.com/jysandy/IntervalShadedVolumetrics">
-            <h3>Interval Shaded Volumetrics</h3>
-        </a>
-        <div class="flex flex-column">
-            <div class="flex flex-column">
-                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/2GmEsqfMqtY"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-                <div class="flex flex-column flex-row-ns">
-                    <div class="w-70-ns">
-                        {{ with resources.Get "images/isv-1.png" }}
-                        <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                        </a>
-                        {{ end }}
-                    </div>
-                    <div class="w-30-ns flex flex-column">
-                        {{ with resources.Get "images/isv-3.png" }}
-                        <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                        </a>
-                        {{ end }}
-
-                        {{ with resources.Get "images/isv-2.png" }}
-                        <a href="{{ .RelPermalink }}">
-                            <img src="{{ .RelPermalink }}" class="pa1-ns pv1">
-                        </a>
-                        {{ end }}
-                    </div>
-
-                </div>
-            </div>
-            <a href="https://github.com/jysandy/IntervalShadedVolumetrics" class="flex flex-row items-center">
-                {{ with resources.Get "images/github-mark.png" }}
-                <img src="{{ .RelPermalink }}" width="20" height="20" class="light-only inline">
-                {{ end }}
-                {{ with resources.Get "images/github-mark-white.png" }}
-                <img src="{{ .RelPermalink }}" width="20" height="20" class="dark-only inline">
-                {{ end }}
-                <span class="ml2">View on Github</span>
-            </a>
-            <p class="tj tl-ns">
-                This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
-                blending. The volumetric particles are represented by tetrahedrons which are converted to triangle
-                proxies using a mesh shader. This project forms my master's dissertation, and is still under active
-                development.
-            </p>
-
-            {{ partial "seeMore.html"
-            `
-            <p class="tj tl-ns">
-            <ul>
-                <li>
-                    This method builds on the work of <a href="https://www.youtube.com/watch?v=BbMGtfMei10">Thibault
-                        Tricard's Interval Shading</a> to draw volumetric particles as tetrahedrons that are composed of
-                    participating media.
-                </li>
-
-                <li>
-                    Interval Shading uses mesh shaders to splat tetrahedrons to the screen as triangle proxies. Vertex
-                    attributes are set in such a way that after rasterization, the pixel shader receives two depths: one
-                    for the front face of the tetrahedron and one for the back. This depth interval can then be used for
-                    shading.
-                </li>
-
-                <li>
-                    Since the medium is represented by a rasterized particle system instead of a density field or
-                    voxels, it is easy to animate and can be used for interactive simulations, as demonstrated in the
-                    video.
-                </li>
-
-                <li>
-                    Radiance is integrated analytically for a single tetrahedron using the depth interval provided by
-                    interval shading. The tetrahedrons are sorted and drawn furthest-to-nearest and blending is used to
-                    integrate radiance across all particles.
-                </li>
-
-                <li>
-                    Self shadowing is achieved by first rendering optical depth into a light-space 3D texture similar to
-                    conventional shadow maps. To determine the radiance arriving at any point along a depth interval,
-                    this 3D texture is sampled at both interval boundaries and linearly interpolated.
-                </li>
-
-                <li>
-                    Some of the planned future work includes:
-
-                    <ul>
-                        <li>Making the tetrahedron edges less visible.</li>
-                        <li>Shadowing of the medium by opaque objects.</li>
-                        <li>Casting volumetric shadows onto opaque objects.</li>
-                        <li>
-                            Performance optimizations:
-                            <ul>
-                                <li>Draw to a lower resolution to reduce pixel shader cost, then upscale and composite.
-                                </li>
-                                <li>Frustum culling when drawing the volumetric shadow map.</li>
-                                <li>Early-Z culling does not work with this method. Therefore, occlusion culling has to
-                                    be performed in the mesh shader.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-
             </ul>
             </p>
             `
