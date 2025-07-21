@@ -81,7 +81,7 @@
         </a>
         <div class="flex flex-column">
             <div class="flex flex-column">
-                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/FJExMr9y3Es"
+                <iframe class="youtube-video pa1-ns pv1" src="https://www.youtube.com/embed/OohD9MdUksg"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -122,8 +122,7 @@
             <p class="tj tl-ns">
                 This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
                 blending. The volumetric particles are represented by tetrahedrons which are converted to triangle
-                proxies using a mesh shader. This project forms my master's dissertation, and is still under active
-                development.
+                proxies using a mesh shader. This project forms my master's dissertation.
             </p>
 
             {{ partial "seeMore.html"
@@ -170,24 +169,13 @@
                 </li>
 
                 <li>
-                    Some of the planned future work includes:
-
-                    <ul>
-                        <li>Shadowing of the medium by opaque objects.</li>
-                        <li>Casting volumetric shadows onto opaque objects.</li>
-                        <li>
-                            Performance optimizations:
-                            <ul>
-                                <li>Draw to a lower resolution to reduce pixel shader cost, then upscale and composite.
-                                </li>
-                                <li>Frustum culling when drawing the volumetric shadow map.</li>
-                                <li>Early-Z culling does not work with this method. Therefore, occlusion culling has to
-                                    be performed in the mesh shader.</li>
-                            </ul>
-                        </li>
-                    </ul>
+                    The volumetric shadow map is also used to cast shadows onto opaque objects.
                 </li>
 
+                <li>
+                    A visibility term in the rendering equation is computed simply by sampling from a conventional
+                    shadow map, giving rise to light shafts.
+                </li>
             </ul>
             </p>
             `
