@@ -18,8 +18,9 @@ hideHeader = false
 # Intro on main page, content is markdown
 homeIntroTitle = 'Hi!'
 homeIntroContent = """
-I'm Sandy, a senior backend engineer turned graphics programmer. 
-I'm interested in game engine development, real-time rendering and functional programming.
+I'm Sandy, a graphics programmer and senior software engineer. 
+I've worked with DirectX 12, implemented a range of rendering techniques and 
+have developed a novel volumetric rendering technique.
 """
 
 # Collection to display on home
