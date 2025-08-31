@@ -119,11 +119,18 @@
                 {{ end }}
                 <span class="ml2">View on Github</span>
             </a>
+            {{ with resources.Get "Sandilya-Jandhyala-Dissertation.pdf" }}
+            <a href="{{ .RelPermalink }}">
+                View Dissertation
+            </a>
+
             <p class="tj tl-ns">
                 This is a novel volumetric rendering technique that doesn't use ray-marching, voxels or temporal
                 blending. The volumetric particles are represented by tetrahedrons which are converted to triangle
-                proxies using a mesh shader. This project forms my master's dissertation.
+                proxies using a mesh shader. This project forms my <a href="{{ .RelPermalink }}">master's dissertation.
+                </a>
             </p>
+            {{ end }}
 
             {{ partial "seeMore.html"
             `
